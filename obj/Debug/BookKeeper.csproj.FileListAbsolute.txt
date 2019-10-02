@@ -103,3 +103,5 @@ C:\Users\profj\Visual Studio Projects\Year End Project\BookKeeper\BookKeeper\obj
 C:\Users\profj\Visual Studio Projects\Year End Project\BookKeeper\BookKeeper\obj\Debug\BookKeeper.csproj.CopyComplete
 C:\Users\profj\Visual Studio Projects\Year End Project\BookKeeper\BookKeeper\obj\Debug\BookKeeper.dll
 C:\Users\profj\Visual Studio Projects\Year End Project\BookKeeper\BookKeeper\obj\Debug\BookKeeper.pdb
+C:\Users\profj\Source\Repos\JesseNichMcBey\BookKeeper\obj\Debug\BookKeeper.dll
+C:\Users\profj\Source\Repos\JesseNichMcBey\BookKeeper\obj\Debug\BookKeeper.pdb
