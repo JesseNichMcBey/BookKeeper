@@ -46,11 +46,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>bookKeeper\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>BookKeeper\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>bookKeeper\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>BookKeeper\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -176,8 +176,56 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookKeeper.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookKeeper.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookKeeper.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookKeeper.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookKeeper.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookListing.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CartStatu.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MemberRole.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Module.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShippingDetail.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SlideImage.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>BookKeeper.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -193,8 +241,25 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\smallSearchIcon.jpg" />
     <Content Include="Images\StandBye.png" />
+    <Content Include="Models\BookKeeper.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BookKeeper.edmx</DependentUpon>
+      <LastGenOutput>BookKeeper.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BookKeeper.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BookKeeper.edmx</DependentUpon>
+      <LastGenOutput>BookKeeper.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\BookKeeper.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BookKeeper.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BookKeeper.edmx.diagram">
+      <DependentUpon>BookKeeper.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

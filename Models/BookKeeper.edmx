@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BookKeeperModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="userName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookListings">
+          <Key>
+            <PropertyRef Name="listingID" />
+          </Key>
+          <Property Name="listingID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="listedPrice" Type="real" Nullable="false" />
+          <Property Name="soldPrice" Type="real" Nullable="false" />
+          <Property Name="condition" Type="int" Nullable="false" />
+          <Property Name="title" Type="ntext" Nullable="false" />
+          <Property Name="author" Type="ntext" Nullable="false" />
+          <Property Name="studentNumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="moduleCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="photo" Type="varbinary(max)" Nullable="false" />
+          <Property Name="description" Type="ntext" Nullable="false" />
+          <Property Name="isSold" Type="bit" Nullable="false" />
+          <Property Name="isQuickSell" Type="bit" Nullable="false" />
+          <Property Name="perDrop" Type="real" />
+          <Property Name="duration" Type="int" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cartID" />
+          </Key>
+          <Property Name="cartID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="listingID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="studentNo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="cartStatusID" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CartStatus">
+          <Key>
+            <PropertyRef Name="cartStatusID" />
+          </Key>
+          <Property Name="cartStatusID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="cartStatus" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="departmentID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberRole">
+          <Key>
+            <PropertyRef Name="memberRoleID" />
+          </Key>
+          <Property Name="memberRoleID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="studentNo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="roleID" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="moduleCode" />
+          </Key>
+          <Property Name="moduleCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShippingDetails">
+          <Key>
+            <PropertyRef Name="shippingDetailID" />
+          </Key>
+          <Property Name="shippingDetailID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="studentNo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zipCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="orderID" Type="int" Nullable="false" />
+          <Property Name="amountPaid" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="paymentType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SlideImage">
+          <Key>
+            <PropertyRef Name="slideID" />
+          </Key>
+          <Property Name="slideID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="slideTitle" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="slideImage" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDepartments">
+          <Key>
+            <PropertyRef Name="studentNo" />
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="studentNo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="departmentID" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="studentNo" />
+          </Key>
+          <Property Name="studentNo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="fName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="lName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isBlacklisted" Type="bit" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="totalrating" Type="int" Nullable="false" />
+          <Property Name="ratingcount" Type="int" Nullable="false" />
+          <Property Name="blacklistReason" Type="ntext" />
+          <Property Name="appealed" Type="bit" />
+        </EntityType>
+        <Association Name="FK_BookListings_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="BookListings" Type="Self.BookListings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="moduleCode" />
+            </Principal>
+            <Dependent Role="BookListings">
+              <PropertyRef Name="moduleCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookListings_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookListings" Type="Self.BookListings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="studentNo" />
+            </Principal>
+            <Dependent Role="BookListings">
+              <PropertyRef Name="studentNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_BookListings">
+          <End Role="BookListings" Type="Self.BookListings" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookListings">
+              <PropertyRef Name="listingID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="listingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_CartStatus">
+          <End Role="CartStatus" Type="Self.CartStatus" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartStatus">
+              <PropertyRef Name="cartStatusID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="cartStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="studentNo" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="studentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberRole_MemberRole">
+          <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="1" />
+          <End Role="MemberRole1" Type="Self.MemberRole" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MemberRole">
+              <PropertyRef Name="memberRoleID" />
+            </Principal>
+            <Dependent Role="MemberRole1">
+              <PropertyRef Name="memberRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberRole_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MemberRole">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShippingDetails_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShippingDetails" Type="Self.ShippingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="studentNo" />
+            </Principal>
+            <Dependent Role="ShippingDetails">
+              <PropertyRef Name="studentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDepartments_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="UserDepartments" Type="Self.UserDepartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="departmentID" />
+            </Principal>
+            <Dependent Role="UserDepartments">
+              <PropertyRef Name="departmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDepartments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserDepartments" Type="Self.UserDepartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="studentNo" />
+            </Principal>
+            <Dependent Role="UserDepartments">
+              <PropertyRef Name="studentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BookKeeperModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookListings" EntityType="Self.BookListings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartStatus" EntityType="Self.CartStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberRole" EntityType="Self.MemberRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShippingDetails" EntityType="Self.ShippingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SlideImage" EntityType="Self.SlideImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDepartments" EntityType="Self.UserDepartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookListings_Module" Association="Self.FK_BookListings_Module">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="BookListings" EntitySet="BookListings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookListings_Users" Association="Self.FK_BookListings_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookListings" EntitySet="BookListings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_BookListings" Association="Self.FK_Cart_BookListings">
+            <End Role="BookListings" EntitySet="BookListings" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_CartStatus" Association="Self.FK_Cart_CartStatus">
+            <End Role="CartStatus" EntitySet="CartStatus" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Users" Association="Self.FK_Cart_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberRole_MemberRole" Association="Self.FK_MemberRole_MemberRole">
+            <End Role="MemberRole" EntitySet="MemberRole" />
+            <End Role="MemberRole1" EntitySet="MemberRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberRole_Roles" Association="Self.FK_MemberRole_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="MemberRole" EntitySet="MemberRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingDetails_Users" Association="Self.FK_ShippingDetails_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShippingDetails" EntitySet="ShippingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDepartments_Departments" Association="Self.FK_UserDepartments_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="UserDepartments" EntitySet="UserDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDepartments_Users" Association="Self.FK_UserDepartments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserDepartments" EntitySet="UserDepartments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BookKeeperModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="userName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookListing">
+          <Key>
+            <PropertyRef Name="listingID" />
+          </Key>
+          <Property Name="listingID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="listedPrice" Type="Single" Nullable="false" />
+          <Property Name="soldPrice" Type="Single" Nullable="false" />
+          <Property Name="condition" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="studentNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="moduleCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isSold" Type="Boolean" Nullable="false" />
+          <Property Name="isQuickSell" Type="Boolean" Nullable="false" />
+          <Property Name="perDrop" Type="Single" />
+          <Property Name="duration" Type="Int32" />
+          <NavigationProperty Name="Module" Relationship="Self.FK_BookListings_Module" FromRole="BookListings" ToRole="Module" />
+          <NavigationProperty Name="User" Relationship="Self.FK_BookListings_Users" FromRole="BookListings" ToRole="Users" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_BookListings" FromRole="BookListings" ToRole="Cart" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cartID" />
+          </Key>
+          <Property Name="cartID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="listingID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="studentNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="cartStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookListing" Relationship="Self.FK_Cart_BookListings" FromRole="Cart" ToRole="BookListings" />
+          <NavigationProperty Name="CartStatu" Relationship="Self.FK_Cart_CartStatus" FromRole="Cart" ToRole="CartStatus" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Cart_Users" FromRole="Cart" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="CartStatu">
+          <Key>
+            <PropertyRef Name="cartStatusID" />
+          </Key>
+          <Property Name="cartStatusID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="cartStatus" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_CartStatus" FromRole="CartStatus" ToRole="Cart" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="departmentID" />
+          </Key>
+          <Property Name="departmentID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.UserDepartments" FromRole="Departments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="MemberRole">
+          <Key>
+            <PropertyRef Name="memberRoleID" />
+          </Key>
+          <Property Name="memberRoleID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="studentNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="roleID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MemberRole1" Relationship="Self.FK_MemberRole_MemberRole" FromRole="MemberRole" ToRole="MemberRole1" />
+          <NavigationProperty Name="MemberRole2" Relationship="Self.FK_MemberRole_MemberRole" FromRole="MemberRole1" ToRole="MemberRole" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_MemberRole_Roles" FromRole="MemberRole" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="moduleCode" />
+          </Key>
+          <Property Name="moduleCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BookListings" Relationship="Self.FK_BookListings_Module" FromRole="Module" ToRole="BookListings" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MemberRoles" Relationship="Self.FK_MemberRole_Roles" FromRole="Roles" ToRole="MemberRole" />
+        </EntityType>
+        <EntityType Name="ShippingDetail">
+          <Key>
+            <PropertyRef Name="shippingDetailID" />
+          </Key>
+          <Property Name="shippingDetailID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="studentNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orderID" Type="Int32" Nullable="false" />
+          <Property Name="amountPaid" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="paymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ShippingDetails_Users" FromRole="ShippingDetails" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="SlideImage">
+          <Key>
+            <PropertyRef Name="slideID" />
+          </Key>
+          <Property Name="slideID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="slideTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="slideImage1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="studentNo" />
+          </Key>
+          <Property Name="studentNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="lName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isBlacklisted" Type="Boolean" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="totalrating" Type="Int32" Nullable="false" />
+          <Property Name="ratingcount" Type="Int32" Nullable="false" />
+          <Property Name="blacklistReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="appealed" Type="Boolean" />
+          <NavigationProperty Name="BookListings" Relationship="Self.FK_BookListings_Users" FromRole="Users" ToRole="BookListings" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Users" FromRole="Users" ToRole="Cart" />
+          <NavigationProperty Name="ShippingDetails" Relationship="Self.FK_ShippingDetails_Users" FromRole="Users" ToRole="ShippingDetails" />
+          <NavigationProperty Name="Departments" Relationship="Self.UserDepartments" FromRole="Users" ToRole="Departments" />
+        </EntityType>
+        <Association Name="FK_BookListings_Module">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="BookListings" Type="Self.BookListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="moduleCode" />
+            </Principal>
+            <Dependent Role="BookListings">
+              <PropertyRef Name="moduleCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookListings_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="BookListings" Type="Self.BookListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="studentNo" />
+            </Principal>
+            <Dependent Role="BookListings">
+              <PropertyRef Name="studentNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_BookListings">
+          <End Role="BookListings" Type="Self.BookListing" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookListings">
+              <PropertyRef Name="listingID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="listingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_CartStatus">
+          <End Role="CartStatus" Type="Self.CartStatu" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartStatus">
+              <PropertyRef Name="cartStatusID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="cartStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="studentNo" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="studentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberRole_MemberRole">
+          <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="1" />
+          <End Role="MemberRole1" Type="Self.MemberRole" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MemberRole">
+              <PropertyRef Name="memberRoleID" />
+            </Principal>
+            <Dependent Role="MemberRole1">
+              <PropertyRef Name="memberRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberRole_Roles">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="MemberRole">
+              <PropertyRef Name="roleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShippingDetails_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="ShippingDetails" Type="Self.ShippingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="studentNo" />
+            </Principal>
+            <Dependent Role="ShippingDetails">
+              <PropertyRef Name="studentNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserDepartments">
+          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BookKeeperEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="BookListings" EntityType="Self.BookListing" />
+          <EntitySet Name="Carts" EntityType="Self.Cart" />
+          <EntitySet Name="CartStatus" EntityType="Self.CartStatu" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="MemberRoles" EntityType="Self.MemberRole" />
+          <EntitySet Name="Modules" EntityType="Self.Module" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="ShippingDetails" EntityType="Self.ShippingDetail" />
+          <EntitySet Name="SlideImages" EntityType="Self.SlideImage" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_BookListings_Module" Association="Self.FK_BookListings_Module">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="BookListings" EntitySet="BookListings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookListings_Users" Association="Self.FK_BookListings_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookListings" EntitySet="BookListings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_BookListings" Association="Self.FK_Cart_BookListings">
+            <End Role="BookListings" EntitySet="BookListings" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_CartStatus" Association="Self.FK_Cart_CartStatus">
+            <End Role="CartStatus" EntitySet="CartStatus" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Users" Association="Self.FK_Cart_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberRole_MemberRole" Association="Self.FK_MemberRole_MemberRole">
+            <End Role="MemberRole" EntitySet="MemberRoles" />
+            <End Role="MemberRole1" EntitySet="MemberRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberRole_Roles" Association="Self.FK_MemberRole_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="MemberRole" EntitySet="MemberRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingDetails_Users" Association="Self.FK_ShippingDetails_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShippingDetails" EntitySet="ShippingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="UserDepartments" Association="Self.UserDepartments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BookKeeperModelStoreContainer" CdmEntityContainer="BookKeeperEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="BookKeeperModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookListings">
+            <EntityTypeMapping TypeName="BookKeeperModel.BookListing">
+              <MappingFragment StoreEntitySet="BookListings">
+                <ScalarProperty Name="listingID" ColumnName="listingID" />
+                <ScalarProperty Name="listedPrice" ColumnName="listedPrice" />
+                <ScalarProperty Name="soldPrice" ColumnName="soldPrice" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="studentNumber" ColumnName="studentNumber" />
+                <ScalarProperty Name="moduleCode" ColumnName="moduleCode" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isSold" ColumnName="isSold" />
+                <ScalarProperty Name="isQuickSell" ColumnName="isQuickSell" />
+                <ScalarProperty Name="perDrop" ColumnName="perDrop" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="BookKeeperModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="cartID" ColumnName="cartID" />
+                <ScalarProperty Name="listingID" ColumnName="listingID" />
+                <ScalarProperty Name="studentNo" ColumnName="studentNo" />
+                <ScalarProperty Name="cartStatusID" ColumnName="cartStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartStatus">
+            <EntityTypeMapping TypeName="BookKeeperModel.CartStatu">
+              <MappingFragment StoreEntitySet="CartStatus">
+                <ScalarProperty Name="cartStatusID" ColumnName="cartStatusID" />
+                <ScalarProperty Name="cartStatus" ColumnName="cartStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="BookKeeperModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberRoles">
+            <EntityTypeMapping TypeName="BookKeeperModel.MemberRole">
+              <MappingFragment StoreEntitySet="MemberRole">
+                <ScalarProperty Name="memberRoleID" ColumnName="memberRoleID" />
+                <ScalarProperty Name="studentNo" ColumnName="studentNo" />
+                <ScalarProperty Name="roleID" ColumnName="roleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="BookKeeperModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="moduleCode" ColumnName="moduleCode" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="BookKeeperModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShippingDetails">
+            <EntityTypeMapping TypeName="BookKeeperModel.ShippingDetail">
+              <MappingFragment StoreEntitySet="ShippingDetails">
+                <ScalarProperty Name="shippingDetailID" ColumnName="shippingDetailID" />
+                <ScalarProperty Name="studentNo" ColumnName="studentNo" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="amountPaid" ColumnName="amountPaid" />
+                <ScalarProperty Name="paymentType" ColumnName="paymentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SlideImages">
+            <EntityTypeMapping TypeName="BookKeeperModel.SlideImage">
+              <MappingFragment StoreEntitySet="SlideImage">
+                <ScalarProperty Name="slideID" ColumnName="slideID" />
+                <ScalarProperty Name="slideTitle" ColumnName="slideTitle" />
+                <ScalarProperty Name="slideImage1" ColumnName="slideImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BookKeeperModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="studentNo" ColumnName="studentNo" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="lName" ColumnName="lName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="isBlacklisted" ColumnName="isBlacklisted" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="totalrating" ColumnName="totalrating" />
+                <ScalarProperty Name="ratingcount" ColumnName="ratingcount" />
+                <ScalarProperty Name="blacklistReason" ColumnName="blacklistReason" />
+                <ScalarProperty Name="appealed" ColumnName="appealed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserDepartments" TypeName="BookKeeperModel.UserDepartments" StoreEntitySet="UserDepartments">
+            <EndProperty Name="Departments">
+              <ScalarProperty Name="departmentID" ColumnName="departmentID" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="studentNo" ColumnName="studentNo" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
